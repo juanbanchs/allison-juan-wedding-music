@@ -18,8 +18,7 @@ export const tracks: Track[] = [
     title: 'Two Become Juan',
     audioFile: `${base}audio/track9-v4-two-become-juan.mp3`,
     photo: `${base}photos/IMG_1969.jpg`,
-    lyrics: `[Verse 1 — Origins]
-Little boy from Venezuela, rolling arepas in his hands
+    lyrics: `Little boy from Venezuela, rolling arepas in his hands
 Papá found a job across the ocean, said "mijo, we got bigger plans"
 Flew him to the land of tapas, Barcelona, sun galore
 Then the merlion called him over — chilli crab in Singapore
@@ -30,13 +29,11 @@ Chinese roots and Midwest winters, dumplings folded, baos stuffed
 Ballet shoes and robotics club — girl was more than good enough
 Little did she know a boy had just touched down in the Golden State
 
-[Chorus]
 Two become Juan — we won't look back, we're moving on as one
 Two become Juan — two halves who finally found a home
 From across the world we wandered, somehow ended side by side
 Two become Juan — and that's the sweetest part of life
 
-[Verse 2 — UCLA]
 Orientation, day one, September, neither had a clue
 Strangers turned to friends so quickly, growing closer as time flew
 Physics lab, we ran the numbers, best team spreadsheets ever knew
@@ -47,13 +44,11 @@ Built a thermoforming rig with steady hands and tightening screws
 Late nights in Creative Labs on Flow — sensors, prints, and one big dream
 Stayed up past 3 a.m. to fix it right before COVID came in between
 
-[Chorus]
 Two become Juan — we won't look back, we're moving on as one
 Two become Juan — two halves who finally found a home
 From across the world we wandered, somehow ended side by side
 Two become Juan — and that's the sweetest part of life
 
-[Verse 3 — The Long Walk]
 COVID shut the campus down, the world went off the rails
 But when the dust had finally settled, we picked up where stories trail
 Seven hours, just us walking, talking 'til our feet were sore
@@ -64,13 +59,11 @@ Senior year we made it official — I was yours and you were mine
 Arepa dinners and avocado breakfasts, kombucha brewing on the shelf
 She'd be whipping up her hummus, we were building something else
 
-[Chorus]
 Two become Juan — we won't look back, we're moving on as one
 Two become Juan — two halves who finally found a home
 From across the world we wandered, somehow ended side by side
 Two become Juan — and that's the sweetest part of life
 
-[Verse 4 — Pajama Group, Norway & The Kiss]
 Graduation came and "pajama" flew to Iceland — wild and free
 Waterfalls were roaring, volcanoes rumbling — what a sight to see
 Then to Norway's fjords — a ferry ride that changed the game
@@ -82,7 +75,6 @@ One kiss, patient, one kiss perfect — worth every bit of wait
 On to Italy and Vatican halls, then Spain for one last tapas date
 Sometimes slow is how it's written, sometimes love just takes its time
 
-[Bridge]
 Now he's out in Glen Cove, Long Island, building robotic arms with style
 She's at Princeton chasing a PhD, but it's only for a while
 Every mile between us matters, every visit worth the ride
@@ -93,7 +85,6 @@ And our engagement photos? Fuzhou, China — go ahead and look
 Two families, two languages, two worlds on the same track
 Tequeños next to dumplings on the same Thanksgiving plaque
 
-[Final Chorus]
 Two become Juan — and we can't wait to be as one
 Two become Juan — this story's only just begun
 Venezuela, China, Barcelona, Chicago, and the rest

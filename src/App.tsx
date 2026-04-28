@@ -98,13 +98,20 @@ export default function App() {
           })}
 
           {tracks.some((t) => t.bonus) && (
-            <div className="my-2 flex items-center gap-3 sm:my-4">
-              <div className="flex-1 border-t border-dashed border-[var(--color-gold)]/40" />
-              <span className="font-sans text-[10px] uppercase tracking-[0.42em] text-[var(--color-gold)]">
-                Encore
-              </span>
-              <div className="flex-1 border-t border-dashed border-[var(--color-gold)]/40" />
-            </div>
+            <>
+              <div className="my-2 flex items-center gap-3 sm:my-4">
+                <div className="flex-1 border-t border-dashed border-[var(--color-gold)]/40" />
+                <span className="font-sans text-[10px] uppercase tracking-[0.42em] text-[var(--color-gold)]">
+                  Encore
+                </span>
+                <div className="flex-1 border-t border-dashed border-[var(--color-gold)]/40" />
+              </div>
+              <p className="mx-auto -mt-1 max-w-md text-center font-sans text-sm leading-relaxed text-[var(--color-ink-soft)] sm:text-base">
+                Juan's dear friend and groomsman Justin Yeo, created a Chinese
+                instrument version of one of Allison and Juan's favorite Spanish
+                songs. Enjoy!
+              </p>
+            </>
           )}
 
           {tracks.map((track, index) => {
