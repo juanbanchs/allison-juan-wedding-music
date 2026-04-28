@@ -4,13 +4,33 @@ import { AudioPlayer } from './AudioPlayer'
 
 type SongCardProps = {
   track: Track
-  activeTrackId: string | null
-  onPlay: (id: string) => void
+  index: number
+  isActive: boolean
+  isPlaying: boolean
+  currentTime: number
+  duration: number
+  onPlayClick: (index: number) => void
+  onTogglePlay: () => void
+  onSeek: (seconds: number) => void
 }
 
-export function SongCard({ track, activeTrackId, onPlay }: SongCardProps) {
+export function SongCard({
+  track,
+  index,
+  isActive,
+  isPlaying,
+  currentTime,
+  duration,
+  onPlayClick,
+  onTogglePlay,
+  onSeek,
+}: SongCardProps) {
   const [showLyrics, setShowLyrics] = useState(false)
-  const isActive = activeTrackId === track.id
+
+  const handlePlayClick = () => {
+    if (isActive) onTogglePlay()
+    else onPlayClick(index)
+  }
 
   return (
     <article
@@ -38,19 +58,22 @@ export function SongCard({ track, activeTrackId, onPlay }: SongCardProps) {
             </span>
             <h3 className="font-serif text-2xl font-medium leading-tight text-[var(--color-ink)] sm:text-[28px]">
               {track.title}
+              {track.movement && (
+                <span className="ml-3 font-light italic text-[var(--color-ink-soft)]/75 sm:ml-4">
+                  {track.movement}
+                </span>
+              )}
             </h3>
-            {track.movement && (
-              <p className="font-serif text-base italic text-[var(--color-ink-soft)] sm:text-lg">
-                {track.movement}
-              </p>
-            )}
           </header>
 
           <AudioPlayer
             src={track.audioFile}
-            trackId={track.id}
-            activeTrackId={activeTrackId}
-            onPlay={onPlay}
+            isActive={isActive}
+            isPlaying={isPlaying}
+            currentTime={currentTime}
+            duration={duration}
+            onPlayClick={handlePlayClick}
+            onSeek={onSeek}
           />
 
           {track.lyrics && (

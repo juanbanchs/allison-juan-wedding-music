@@ -1,9 +1,10 @@
-import { useState } from 'react'
 import { tracks, heroPhoto } from './tracks'
 import { SongCard } from './SongCard'
+import { GlobalPlayer } from './GlobalPlayer'
+import { usePlayback } from './usePlayback'
 
 export default function App() {
-  const [activeTrackId, setActiveTrackId] = useState<string | null>(null)
+  const player = usePlayback(tracks)
 
   return (
     <main className="relative">
@@ -40,7 +41,7 @@ export default function App() {
       </section>
 
       <section className="relative mx-auto max-w-3xl px-6 py-16 sm:py-24">
-        <header className="mb-12 text-center sm:mb-16">
+        <header className="mb-10 text-center sm:mb-12">
           <p className="mb-3 font-sans text-[11px] uppercase tracking-[0.42em] text-[var(--color-gold)]">
             The Music
           </p>
@@ -48,20 +49,52 @@ export default function App() {
             Nine songs, one love story
           </h2>
           <p className="mx-auto mt-5 max-w-xl font-sans text-sm leading-relaxed text-[var(--color-ink-soft)] sm:text-base">
-            Each piece was written, performed, or chosen for our wedding day —
-            from the processional to the final verse. Press play and stay a while.
+            Juan's father, Rafael Banchs, created these tracks with the help of
+            AI as a gift to us for our wedding. We hope you enjoy them as much
+            as we did!
           </p>
         </header>
 
+        <div className="mb-8 sm:mb-10">
+          <GlobalPlayer
+            tracks={tracks}
+            state={{
+              activeIndex: player.activeIndex,
+              isPlaying: player.isPlaying,
+              currentTime: player.currentTime,
+              duration: player.duration,
+              shuffle: player.shuffle,
+            }}
+            controls={{
+              playIndex: player.playIndex,
+              togglePlayPause: player.togglePlayPause,
+              toggleShuffle: player.toggleShuffle,
+              next: player.next,
+              prev: player.prev,
+              skipBy: player.skipBy,
+              seekTo: player.seekTo,
+            }}
+          />
+        </div>
+
         <div className="flex flex-col gap-5 sm:gap-6">
-          {tracks.map((track) => (
-            <SongCard
-              key={track.id}
-              track={track}
-              activeTrackId={activeTrackId}
-              onPlay={setActiveTrackId}
-            />
-          ))}
+          {tracks.map((track, index) => {
+            const isActive = player.activeIndex === index
+            return (
+              <SongCard
+                key={track.id}
+                track={track}
+                index={index}
+                isActive={isActive}
+                isPlaying={isActive && player.isPlaying}
+                currentTime={isActive ? player.currentTime : 0}
+                duration={isActive ? player.duration : 0}
+                onPlayClick={player.playIndex}
+                onTogglePlay={player.togglePlayPause}
+                onSeek={player.seekTo}
+              />
+            )
+          })}
         </div>
       </section>
 

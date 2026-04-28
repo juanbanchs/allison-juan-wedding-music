@@ -2,9 +2,12 @@ import { useEffect, useRef, useState } from 'react'
 
 type AudioPlayerProps = {
   src: string
-  trackId: string
-  activeTrackId: string | null
-  onPlay: (id: string) => void
+  isActive: boolean
+  isPlaying: boolean
+  currentTime: number
+  duration: number
+  onPlayClick: () => void
+  onSeek: (seconds: number) => void
 }
 
 function formatTime(seconds: number) {
@@ -14,51 +17,54 @@ function formatTime(seconds: number) {
   return `${m}:${s.toString().padStart(2, '0')}`
 }
 
-export function AudioPlayer({ src, trackId, activeTrackId, onPlay }: AudioPlayerProps) {
-  const audioRef = useRef<HTMLAudioElement | null>(null)
+export function AudioPlayer({
+  src,
+  isActive,
+  isPlaying,
+  currentTime,
+  duration,
+  onPlayClick,
+  onSeek,
+}: AudioPlayerProps) {
   const trackRef = useRef<HTMLDivElement | null>(null)
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [duration, setDuration] = useState(0)
-  const [currentTime, setCurrentTime] = useState(0)
+  const metaRef = useRef<HTMLAudioElement | null>(null)
+  const [localDuration, setLocalDuration] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
 
-  useEffect(() => {
-    if (activeTrackId !== trackId && isPlaying) {
-      audioRef.current?.pause()
-    }
-  }, [activeTrackId, trackId, isPlaying])
+  const effectiveDuration = isActive && duration ? duration : localDuration
+  const effectiveTime = isActive ? currentTime : 0
+  const progress = effectiveDuration ? (effectiveTime / effectiveDuration) * 100 : 0
 
-  const togglePlay = () => {
-    const audio = audioRef.current
+  useEffect(() => {
+    const audio = metaRef.current
     if (!audio) return
-    if (audio.paused) {
-      onPlay(trackId)
-      audio.play().catch(() => undefined)
-    } else {
-      audio.pause()
+    const onMeta = () => setLocalDuration(audio.duration)
+    audio.addEventListener('loadedmetadata', onMeta)
+    audio.addEventListener('durationchange', onMeta)
+    return () => {
+      audio.removeEventListener('loadedmetadata', onMeta)
+      audio.removeEventListener('durationchange', onMeta)
     }
-  }
+  }, [])
 
   const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
-    const audio = audioRef.current
     const track = trackRef.current
-    if (!audio || !track || !duration) return
+    if (!track || !effectiveDuration) return
     const rect = track.getBoundingClientRect()
     const ratio = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width))
-    audio.currentTime = ratio * duration
-    setCurrentTime(audio.currentTime)
+    onSeek(ratio * effectiveDuration)
   }
 
-  const progress = duration ? (currentTime / duration) * 100 : 0
+  const showPause = isActive && isPlaying
 
   return (
     <div className="flex items-center gap-4 sm:gap-5">
       <button
         type="button"
-        onClick={togglePlay}
+        onClick={onPlayClick}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        aria-label={isPlaying ? 'Pause' : 'Play'}
+        aria-label={showPause ? 'Pause' : 'Play'}
         className="group relative grid h-12 w-12 shrink-0 place-items-center rounded-full bg-[var(--color-ink)] text-[var(--color-cream)] shadow-[0_8px_24px_-8px_rgba(42,36,31,0.5)] transition-all duration-300 hover:scale-105 hover:bg-[var(--color-rose)] active:scale-95 sm:h-14 sm:w-14"
       >
         <span
@@ -67,7 +73,7 @@ export function AudioPlayer({ src, trackId, activeTrackId, onPlay }: AudioPlayer
             isHovered ? 'opacity-30' : 'opacity-0'
           }`}
         />
-        {isPlaying ? (
+        {showPause ? (
           <svg viewBox="0 0 24 24" fill="currentColor" className="relative h-5 w-5 sm:h-6 sm:w-6">
             <rect x="6" y="5" width="4" height="14" rx="1.5" />
             <rect x="14" y="5" width="4" height="14" rx="1.5" />
@@ -95,21 +101,12 @@ export function AudioPlayer({ src, trackId, activeTrackId, onPlay }: AudioPlayer
           />
         </div>
         <div className="flex items-center justify-between font-sans text-[11px] tracking-wide text-[var(--color-ink-soft)] tabular-nums sm:text-xs">
-          <span>{formatTime(currentTime)}</span>
-          <span>{formatTime(duration)}</span>
+          <span>{formatTime(effectiveTime)}</span>
+          <span>{formatTime(effectiveDuration)}</span>
         </div>
       </div>
 
-      <audio
-        ref={audioRef}
-        src={src}
-        preload="metadata"
-        onPlay={() => setIsPlaying(true)}
-        onPause={() => setIsPlaying(false)}
-        onEnded={() => setIsPlaying(false)}
-        onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
-        onTimeUpdate={(e) => setCurrentTime(e.currentTarget.currentTime)}
-      />
+      <audio ref={metaRef} src={src} preload="metadata" />
     </div>
   )
 }
