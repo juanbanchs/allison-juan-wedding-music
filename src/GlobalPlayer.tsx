@@ -31,14 +31,36 @@ export function GlobalPlayer({ tracks, state, controls }: GlobalPlayerProps) {
     controls.seekTo(ratio * duration)
   }
 
+  const trackInfo = (
+    <>
+      <p className="truncate font-sans text-[10px] uppercase tracking-[0.28em] text-[var(--color-gold)]">
+        {isIdle ? 'Press play' : `Track ${activeTrack!.number} of IX`}
+      </p>
+      <p className="truncate font-serif text-lg leading-tight text-[var(--color-ink)] sm:text-xl">
+        {activeTrack ? (
+          <>
+            {activeTrack.title}
+            {activeTrack.movement && (
+              <span className="ml-2 font-light italic text-[var(--color-ink-soft)]/75">
+                {activeTrack.movement}
+              </span>
+            )}
+          </>
+        ) : (
+          'Play all'
+        )}
+      </p>
+    </>
+  )
+
   return (
     <section
       aria-label="Playback controls"
       className="relative overflow-hidden rounded-[28px] border border-white/60 bg-gradient-to-br from-white/80 to-[var(--color-cream-deep)]/80 p-5 shadow-[0_24px_60px_-30px_rgba(42,36,31,0.35)] backdrop-blur-xl sm:p-7"
     >
-      <div className="flex flex-col gap-5 sm:gap-6">
-        <div className="flex items-center gap-4 sm:gap-6">
-          <div className="flex w-full min-w-0 items-center gap-4 sm:w-auto sm:flex-1">
+      <div className="flex flex-col gap-4 sm:gap-6">
+        <div className="flex items-center justify-between gap-4 sm:gap-6">
+          <div className="flex shrink-0 items-center gap-4 sm:min-w-0 sm:flex-1">
             {activeTrack ? (
               <img
                 src={activeTrack.photo}
@@ -54,24 +76,8 @@ export function GlobalPlayer({ tracks, state, controls }: GlobalPlayerProps) {
                 </svg>
               </div>
             )}
-            <div className="w-full min-w-0 sm:w-[260px]">
-              <p className="truncate font-sans text-[10px] uppercase tracking-[0.28em] text-[var(--color-gold)]">
-                {isIdle ? 'Press play' : `Track ${activeTrack!.number} of IX`}
-              </p>
-              <p className="truncate font-serif text-lg leading-tight text-[var(--color-ink)] sm:text-xl">
-                {activeTrack ? (
-                  <>
-                    {activeTrack.title}
-                    {activeTrack.movement && (
-                      <span className="ml-2 font-light italic text-[var(--color-ink-soft)]/75">
-                        {activeTrack.movement}
-                      </span>
-                    )}
-                  </>
-                ) : (
-                  'Play all'
-                )}
-              </p>
+            <div className="hidden min-w-0 sm:block sm:w-[260px]">
+              {trackInfo}
             </div>
           </div>
 
@@ -162,6 +168,10 @@ export function GlobalPlayer({ tracks, state, controls }: GlobalPlayerProps) {
               </svg>
             </button>
           </div>
+        </div>
+
+        <div className="min-w-0 px-1 text-center sm:hidden">
+          {trackInfo}
         </div>
 
         <div className="flex items-center gap-3">
