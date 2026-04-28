@@ -31,6 +31,22 @@ export function GlobalPlayer({ tracks, state, controls }: GlobalPlayerProps) {
     controls.seekTo(ratio * duration)
   }
 
+  const photo = activeTrack ? (
+    <img
+      src={activeTrack.photo}
+      alt=""
+      className="h-14 w-14 shrink-0 rounded-xl object-cover shadow-md sm:h-16 sm:w-16"
+    />
+  ) : (
+    <div className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-[var(--color-rose-soft)]/40 text-[var(--color-gold)] sm:h-16 sm:w-16">
+      <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
+        <path d="M9 17V5l12-2v12" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+        <circle cx="6" cy="17" r="3" />
+        <circle cx="18" cy="15" r="3" />
+      </svg>
+    </div>
+  )
+
   const trackInfo = (
     <>
       <p className="truncate font-sans text-[10px] uppercase tracking-[0.28em] text-[var(--color-gold)]">
@@ -59,24 +75,10 @@ export function GlobalPlayer({ tracks, state, controls }: GlobalPlayerProps) {
       className="relative overflow-hidden rounded-[28px] border border-white/60 bg-gradient-to-br from-white/80 to-[var(--color-cream-deep)]/80 p-5 shadow-[0_24px_60px_-30px_rgba(42,36,31,0.35)] backdrop-blur-xl sm:p-7"
     >
       <div className="flex flex-col gap-4 sm:gap-6">
-        <div className="flex items-center justify-between gap-4 sm:gap-6">
-          <div className="flex shrink-0 items-center gap-4 sm:min-w-0 sm:flex-1">
-            {activeTrack ? (
-              <img
-                src={activeTrack.photo}
-                alt=""
-                className="h-14 w-14 shrink-0 rounded-xl object-cover shadow-md sm:h-16 sm:w-16"
-              />
-            ) : (
-              <div className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-[var(--color-rose-soft)]/40 text-[var(--color-gold)] sm:h-16 sm:w-16">
-                <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
-                  <path d="M9 17V5l12-2v12" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-                  <circle cx="6" cy="17" r="3" />
-                  <circle cx="18" cy="15" r="3" />
-                </svg>
-              </div>
-            )}
-            <div className="hidden min-w-0 sm:block sm:w-[260px]">
+        <div className="flex items-center justify-center gap-4 sm:justify-between sm:gap-6">
+          <div className="hidden min-w-0 items-center gap-4 sm:flex sm:flex-1">
+            {photo}
+            <div className="min-w-0 sm:w-[260px]">
               {trackInfo}
             </div>
           </div>
@@ -170,8 +172,11 @@ export function GlobalPlayer({ tracks, state, controls }: GlobalPlayerProps) {
           </div>
         </div>
 
-        <div className="min-w-0 px-1 text-center sm:hidden">
-          {trackInfo}
+        <div className="flex items-center gap-3 sm:hidden">
+          {photo}
+          <div className="min-w-0 flex-1">
+            {trackInfo}
+          </div>
         </div>
 
         <div className="flex items-center gap-3">
