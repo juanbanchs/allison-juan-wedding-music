@@ -1,0 +1,79 @@
+import { useState } from 'react'
+import { tracks, heroPhoto } from './tracks'
+import { SongCard } from './SongCard'
+
+export default function App() {
+  const [activeTrackId, setActiveTrackId] = useState<string | null>(null)
+
+  return (
+    <main className="relative">
+      <section className="relative overflow-hidden">
+        <div className="relative mx-auto max-w-6xl px-6 pt-10 sm:pt-16 lg:pt-20">
+          <div className="relative overflow-hidden rounded-[36px] shadow-[0_40px_80px_-30px_rgba(42,36,31,0.45)]">
+            <img
+              src={heroPhoto}
+              alt="Allison and Juan"
+              className="block h-[60vh] min-h-[460px] w-full object-cover sm:h-[72vh]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[var(--color-cream)]/95" />
+            <div className="absolute inset-x-0 bottom-0 px-6 pb-10 text-center sm:pb-14">
+              <p className="mb-4 font-sans text-[11px] uppercase tracking-[0.42em] text-[var(--color-ink-soft)]">
+                A Wedding Remembrance
+              </p>
+              <h1 className="font-serif text-[clamp(3rem,9vw,7.5rem)] font-light leading-none tracking-tight text-[var(--color-ink)]">
+                Allison <span className="italic text-[var(--color-rose)]">&amp;</span> Juan
+              </h1>
+              <div className="mx-auto mt-6 h-px w-16 bg-[var(--color-gold)]/60" />
+            </div>
+          </div>
+
+          <div className="mx-auto mt-12 max-w-2xl px-2 text-center sm:mt-20">
+            <p className="font-serif text-xl italic leading-relaxed text-[var(--color-ink-soft)] sm:text-2xl">
+              "Place me like a seal over your heart, like a seal on your arm;
+              for love is as strong as death."
+            </p>
+            <p className="mt-3 font-sans text-xs uppercase tracking-[0.32em] text-[var(--color-gold)]">
+              Song of Songs 8:6
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative mx-auto max-w-3xl px-6 py-16 sm:py-24">
+        <header className="mb-12 text-center sm:mb-16">
+          <p className="mb-3 font-sans text-[11px] uppercase tracking-[0.42em] text-[var(--color-gold)]">
+            The Music
+          </p>
+          <h2 className="font-serif text-4xl font-light tracking-tight text-[var(--color-ink)] sm:text-5xl">
+            Nine songs, one love story
+          </h2>
+          <p className="mx-auto mt-5 max-w-xl font-sans text-sm leading-relaxed text-[var(--color-ink-soft)] sm:text-base">
+            Each piece was written, performed, or chosen for our wedding day —
+            from the processional to the final verse. Press play and stay a while.
+          </p>
+        </header>
+
+        <div className="flex flex-col gap-5 sm:gap-6">
+          {tracks.map((track) => (
+            <SongCard
+              key={track.id}
+              track={track}
+              activeTrackId={activeTrackId}
+              onPlay={setActiveTrackId}
+            />
+          ))}
+        </div>
+      </section>
+
+      <footer className="mx-auto max-w-3xl px-6 pb-16 text-center sm:pb-24">
+        <div className="mx-auto h-px w-12 bg-[var(--color-gold)]/50" />
+        <p className="mt-6 font-serif text-lg italic text-[var(--color-ink-soft)]">
+          With love, from Allison &amp; Juan
+        </p>
+        <p className="mt-2 font-sans text-xs uppercase tracking-[0.3em] text-[var(--color-ink-soft)]/70">
+          Two become one
+        </p>
+      </footer>
+    </main>
+  )
+}
