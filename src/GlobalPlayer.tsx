@@ -169,12 +169,14 @@ export function GlobalPlayer({ tracks, state, controls }: GlobalPlayerProps) {
                 <path d="M16 5a1 1 0 0 1 2 0v14a1 1 0 0 1-2 0Zm-10.5-.86a1 1 0 0 1 1.5.86v13.72a1 1 0 0 1-1.5.86l9.5-6.86a1 1 0 0 0 0-1.72Z" />
               </svg>
             </button>
+
+            <div aria-hidden="true" className="h-9 w-9 shrink-0 sm:hidden" />
           </div>
         </div>
 
-        <div className="flex items-center gap-3 sm:hidden">
+        <div className="flex items-center justify-center gap-3 sm:hidden">
           {photo}
-          <div className="min-w-0 flex-1">
+          <div className="min-w-0">
             {trackInfo}
           </div>
         </div>
