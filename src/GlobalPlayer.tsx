@@ -36,46 +36,46 @@ export function GlobalPlayer({ tracks, state, controls }: GlobalPlayerProps) {
       aria-label="Playback controls"
       className="relative overflow-hidden rounded-[28px] border border-white/60 bg-gradient-to-br from-white/80 to-[var(--color-cream-deep)]/80 p-5 shadow-[0_24px_60px_-30px_rgba(42,36,31,0.35)] backdrop-blur-xl sm:p-7"
     >
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
-        <div className="flex items-center gap-4">
-          {activeTrack ? (
-            <img
-              src={activeTrack.photo}
-              alt=""
-              className="h-14 w-14 shrink-0 rounded-xl object-cover shadow-md sm:h-16 sm:w-16"
-            />
-          ) : (
-            <div className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-[var(--color-rose-soft)]/40 text-[var(--color-gold)] sm:h-16 sm:w-16">
-              <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
-                <path d="M9 17V5l12-2v12" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-                <circle cx="6" cy="17" r="3" />
-                <circle cx="18" cy="15" r="3" />
-              </svg>
+      <div className="flex flex-col gap-5 sm:gap-6">
+        <div className="flex items-center gap-4 sm:gap-6">
+          <div className="flex w-full min-w-0 items-center gap-4 sm:w-auto sm:flex-1">
+            {activeTrack ? (
+              <img
+                src={activeTrack.photo}
+                alt=""
+                className="h-14 w-14 shrink-0 rounded-xl object-cover shadow-md sm:h-16 sm:w-16"
+              />
+            ) : (
+              <div className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-[var(--color-rose-soft)]/40 text-[var(--color-gold)] sm:h-16 sm:w-16">
+                <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
+                  <path d="M9 17V5l12-2v12" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                  <circle cx="6" cy="17" r="3" />
+                  <circle cx="18" cy="15" r="3" />
+                </svg>
+              </div>
+            )}
+            <div className="w-full min-w-0 sm:w-[260px]">
+              <p className="truncate font-sans text-[10px] uppercase tracking-[0.28em] text-[var(--color-gold)]">
+                {isIdle ? 'Press play' : `Track ${activeTrack!.number} of IX`}
+              </p>
+              <p className="truncate font-serif text-lg leading-tight text-[var(--color-ink)] sm:text-xl">
+                {activeTrack ? (
+                  <>
+                    {activeTrack.title}
+                    {activeTrack.movement && (
+                      <span className="ml-2 font-light italic text-[var(--color-ink-soft)]/75">
+                        {activeTrack.movement}
+                      </span>
+                    )}
+                  </>
+                ) : (
+                  'Play all'
+                )}
+              </p>
             </div>
-          )}
-          <div className="min-w-0 flex-1 sm:min-w-[160px]">
-            <p className="font-sans text-[10px] uppercase tracking-[0.28em] text-[var(--color-gold)]">
-              {isIdle ? 'Press play' : `Track ${activeTrack!.number} of ${tracks.length === 9 ? 'IX' : tracks.length}`}
-            </p>
-            <p className="truncate font-serif text-lg leading-tight text-[var(--color-ink)] sm:text-xl">
-              {activeTrack ? (
-                <>
-                  {activeTrack.title}
-                  {activeTrack.movement && (
-                    <span className="ml-2 font-light italic text-[var(--color-ink-soft)]">
-                      {activeTrack.movement}
-                    </span>
-                  )}
-                </>
-              ) : (
-                'Play all'
-              )}
-            </p>
           </div>
-        </div>
 
-        <div className="flex flex-1 flex-col gap-3">
-          <div className="flex items-center justify-center gap-1 sm:gap-2">
+          <div className="flex shrink-0 items-center justify-end gap-1 sm:gap-2">
             <button
               type="button"
               onClick={controls.toggleShuffle}
@@ -161,32 +161,30 @@ export function GlobalPlayer({ tracks, state, controls }: GlobalPlayerProps) {
                 <path d="M16 5a1 1 0 0 1 2 0v14a1 1 0 0 1-2 0Zm-10.5-.86a1 1 0 0 1 1.5.86v13.72a1 1 0 0 1-1.5.86l9.5-6.86a1 1 0 0 0 0-1.72Z" />
               </svg>
             </button>
-
-            <span aria-hidden className="h-9 w-9" />
           </div>
+        </div>
 
-          <div className="flex items-center gap-3">
-            <span className="font-sans text-[11px] tabular-nums text-[var(--color-ink-soft)]">
-              {formatTime(currentTime)}
-            </span>
+        <div className="flex items-center gap-3">
+          <span className="w-10 shrink-0 text-right font-sans text-[11px] tabular-nums text-[var(--color-ink-soft)]">
+            {formatTime(currentTime)}
+          </span>
+          <div
+            ref={trackRef}
+            onClick={handleSeek}
+            className="group relative h-1.5 flex-1 cursor-pointer rounded-full bg-[var(--color-rose-soft)]/60 transition-all hover:h-2"
+          >
             <div
-              ref={trackRef}
-              onClick={handleSeek}
-              className="group relative h-1.5 flex-1 cursor-pointer rounded-full bg-[var(--color-rose-soft)]/60 transition-all hover:h-2"
-            >
-              <div
-                className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-[var(--color-gold)] to-[var(--color-rose)]"
-                style={{ width: `${progress}%` }}
-              />
-              <div
-                className="absolute top-1/2 h-3 w-3 -translate-y-1/2 -translate-x-1/2 rounded-full bg-[var(--color-ink)] opacity-0 shadow-md transition-opacity group-hover:opacity-100"
-                style={{ left: `${progress}%` }}
-              />
-            </div>
-            <span className="font-sans text-[11px] tabular-nums text-[var(--color-ink-soft)]">
-              {formatTime(duration)}
-            </span>
+              className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-[var(--color-gold)] to-[var(--color-rose)]"
+              style={{ width: `${progress}%` }}
+            />
+            <div
+              className="absolute top-1/2 h-3 w-3 -translate-y-1/2 -translate-x-1/2 rounded-full bg-[var(--color-ink)] opacity-0 shadow-md transition-opacity group-hover:opacity-100"
+              style={{ left: `${progress}%` }}
+            />
           </div>
+          <span className="w-10 shrink-0 font-sans text-[11px] tabular-nums text-[var(--color-ink-soft)]">
+            {formatTime(duration)}
+          </span>
         </div>
       </div>
     </section>
