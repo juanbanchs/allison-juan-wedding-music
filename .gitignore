@@ -13,9 +13,9 @@ dist-ssr
 *.local
 
 # Originals — kept locally only; web-ready copies live in public/
-music/
-photos/
-web-photos/
+/music/
+/photos/
+/web-photos/
 
 # Editor directories and files
 .vscode/*
