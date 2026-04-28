@@ -79,6 +79,36 @@ export default function App() {
 
         <div className="flex flex-col gap-5 sm:gap-6">
           {tracks.map((track, index) => {
+            if (track.bonus) return null
+            const isActive = player.activeIndex === index
+            return (
+              <SongCard
+                key={track.id}
+                track={track}
+                index={index}
+                isActive={isActive}
+                isPlaying={isActive && player.isPlaying}
+                currentTime={isActive ? player.currentTime : 0}
+                duration={isActive ? player.duration : 0}
+                onPlayClick={player.playIndex}
+                onTogglePlay={player.togglePlayPause}
+                onSeek={player.seekTo}
+              />
+            )
+          })}
+
+          {tracks.some((t) => t.bonus) && (
+            <div className="my-2 flex items-center gap-3 sm:my-4">
+              <div className="flex-1 border-t border-dashed border-[var(--color-gold)]/40" />
+              <span className="font-sans text-[10px] uppercase tracking-[0.42em] text-[var(--color-gold)]">
+                Encore
+              </span>
+              <div className="flex-1 border-t border-dashed border-[var(--color-gold)]/40" />
+            </div>
+          )}
+
+          {tracks.map((track, index) => {
+            if (!track.bonus) return null
             const isActive = player.activeIndex === index
             return (
               <SongCard

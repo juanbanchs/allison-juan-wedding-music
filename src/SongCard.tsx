@@ -54,7 +54,7 @@ export function SongCard({
         <div className="flex flex-1 flex-col gap-4 min-w-0">
           <header className="flex flex-col gap-1">
             <span className="font-sans text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
-              Track {track.number}
+              {track.bonus ? 'Encore' : `Track ${track.number}`}
             </span>
             <h3 className="font-serif text-2xl font-medium leading-tight text-[var(--color-ink)] sm:text-[28px]">
               {track.title}

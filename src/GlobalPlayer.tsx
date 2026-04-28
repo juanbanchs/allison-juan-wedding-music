@@ -50,7 +50,7 @@ export function GlobalPlayer({ tracks, state, controls }: GlobalPlayerProps) {
   const trackInfo = (
     <>
       <p className="truncate font-sans text-[10px] uppercase tracking-[0.28em] text-[var(--color-gold)]">
-        {isIdle ? 'Press play' : `Track ${activeTrack!.number} of IX`}
+        {isIdle ? 'Press play' : activeTrack!.bonus ? 'Encore' : `Track ${activeTrack!.number} of IX`}
       </p>
       <p className="truncate font-serif text-lg leading-tight text-[var(--color-ink)] sm:text-xl">
         {activeTrack ? (

@@ -6,6 +6,7 @@ export type Track = {
   audioFile: string
   photo: string
   lyrics?: string
+  bonus?: boolean
 }
 
 const base = import.meta.env.BASE_URL
@@ -17,139 +18,90 @@ export const tracks: Track[] = [
     title: 'Two Become Juan',
     audioFile: `${base}audio/track9-v4-two-become-juan.mp3`,
     photo: `${base}photos/IMG_1969.jpg`,
-    lyrics: `Little boy from Venezuela
-Rolling arepas in his hands
-Papá found a job across the ocean
-Said "mijo, we got bigger plans"
-Flew him to the land of tapas
-Barcelona sun and stone
-Then the mer-lion called him over
-Chilli crab in Singapore
-One more flight to California
-Didn't know what was in store
+    lyrics: `[Verse 1 — Origins]
+Little boy from Venezuela, rolling arepas in his hands
+Papá found a job across the ocean, said "mijo, we got bigger plans"
+Flew him to the land of tapas, Barcelona, sun galore
+Then the merlion called him over — chilli crab in Singapore
 
-Somewhere out in Chicago
-A girl was growing up
-Chinese roots and Midwest winters
-Dumplings folded, baos stuffed
-She was twirling through ballet
-And building robots after school
-Little did she know a boy had just
-Touched down in the Golden State
+One more flight to California, didn't know what was in store
+Somewhere out in Chicago, a girl worth waiting for
+Chinese roots and Midwest winters, dumplings folded, baos stuffed
+Ballet shoes and robotics club — girl was more than good enough
+Little did she know a boy had just touched down in the Golden State
 
-Two become Huan
-We won't look back
-We're moving on as one
-Two become Huan
-Two halves who finally found a home
-From across the world we wandered
-Somehow ended side by side
-Two become Huan
-And that's the sweetest part of life
+[Chorus]
+Two become Juan — we won't look back, we're moving on as one
+Two become Juan — two halves who finally found a home
+From across the world we wandered, somehow ended side by side
+Two become Juan — and that's the sweetest part of life
 
-Orientation, day one
-September, neither had a clue
-Strangers turned to friends so quickly
-Growing closer as time flew
-Physics lab, we ran the numbers
-Best team spreadsheets ever knew
-Hours deep in calculations
-Still I'd rather crunch with you
-Then Bruin Racing came along
-We led the structures crew
-Built a thermoforming rig
-With steady hands and tightening screws
-Late nights in Creative Labs on Flow
-Our little Io tea dream
-Stayed up past 3 a.m. to fix it right
-Before COVID came in between
+[Verse 2 — UCLA]
+Orientation, day one, September, neither had a clue
+Strangers turned to friends so quickly, growing closer as time flew
+Physics lab, we ran the numbers, best team spreadsheets ever knew
+Hours deep in calculations, still I'd rather crunch with you
 
-Two become Huan
-We won't look back
-We're moving on as one
-Two become Huan
-Two halves who finally found a home
-From across the world we wandered
-Somehow ended side by side
-Two become Huan
-And that's the sweetest part of life
+Then Bruin Racing came along, we led the structures crew
+Built a thermoforming rig with steady hands and tightening screws
+Late nights in Creative Labs on Flow — sensors, prints, and one big dream
+Stayed up past 3 a.m. to fix it right before COVID came in between
 
-COVID shut the campus down
-The world went off the rails
-But when the dust had finally settled
-We picked up where stories trail
-Seven hours, just us walking
-Talking 'til our feet were sore
-Somewhere on that endless sidewalk
-I was sure I wanted more
-Then she took my hand for bachata
-Steps and heartbeats keeping time
-Senior year we made it official
-I was yours and you were mine
-Arepa dinners and avocado breakfasts
-Kombucha brewing on the shelf
-She'd be whipping up her hummus
-We were building something else
+[Chorus]
+Two become Juan — we won't look back, we're moving on as one
+Two become Juan — two halves who finally found a home
+From across the world we wandered, somehow ended side by side
+Two become Juan — and that's the sweetest part of life
 
-Two become Huan
-We won't look back
-We're moving on as one
-Two become Huan
-Two halves who finally found a home
-From across the world we wandered
-Somehow ended side by side
-Two become Huan
-And that's the sweetest part of life
+[Verse 3 — The Long Walk]
+COVID shut the campus down, the world went off the rails
+But when the dust had finally settled, we picked up where stories trail
+Seven hours, just us walking, talking 'til our feet were sore
+Somewhere on that endless sidewalk, I was sure I wanted more
 
-Graduation came and "pajama"
-Packed their bags for Iceland
-The waterfalls were roaring
-And the volcanoes almost erupting
-Then our trip to Norway's fjords
-A little ferry, cruising between the mountains
-That's where I first said I love you
-And she smiled and whispered the same
-Then in Sweden, in a park beneath
-The tender afternoon sun
-Six whole months after we started to date
-One kiss, patient, one kiss perfect
-Worth every single bit of wait
-On to Italy and Vatican halls
-Then Spain for one last tapas night
-Sometimes slow is how it's written
-Sometimes love just takes its time
+Then she took my hand for bachata, steps and heartbeats keeping time
+Senior year we made it official — I was yours and you were mine
+Arepa dinners and avocado breakfasts, kombucha brewing on the shelf
+She'd be whipping up her hummus, we were building something else
 
-Now he's out in Glen Cove, Long Island
-Building robotic arms with style
-She's at Princeton chasing a PhD
-But it's only for a while
-Every mile between us matters
-Every visit worth the ride
-We keep showing up for each other
-That's how love stays alive
-She brought spikeball to the campus
-Got the whole of Princeton hooked
-And our engagement photos?
-Fuzhou, China, go ahead and look
-Two families, two languages
-Two worlds that overlap
-Tekehños next to dumplings
-On the same Thanksgiving plaque
+[Chorus]
+Two become Juan — we won't look back, we're moving on as one
+Two become Juan — two halves who finally found a home
+From across the world we wandered, somehow ended side by side
+Two become Juan — and that's the sweetest part of life
 
-Two become Huan
-And we can't wait to be as one
-Two become Huan
-Two halves who finally found a home
-Venezuela, China, Barcelona
-Chicago, and the rest
-Every city was a chapter
-Getting us to what comes next
-To Boston we go
-And God plans the rest
-Two become Huan
-One flesh, one promise, one new name
-Two become Huan
-And nothing's ever been the same`,
+[Verse 4 — Pajama Group, Norway & The Kiss]
+Graduation came and "pajama" flew to Iceland — wild and free
+Waterfalls were roaring, volcanoes rumbling — what a sight to see
+Then to Norway's fjords — a ferry ride that changed the game
+That's where he first said I love you, and she whispered the same
+
+Then in Sweden, in a park beneath the tender afternoon sun
+Six whole months into our story — our first kiss had finally come
+One kiss, patient, one kiss perfect — worth every bit of wait
+On to Italy and Vatican halls, then Spain for one last tapas date
+Sometimes slow is how it's written, sometimes love just takes its time
+
+[Bridge]
+Now he's out in Glen Cove, Long Island, building robotic arms with style
+She's at Princeton chasing a PhD, but it's only for a while
+Every mile between us matters, every visit worth the ride
+We keep showing up for each other — that's how love stays alive
+
+She brought spikeball to the campus, got the whole of Princeton hooked
+And our engagement photos? Fuzhou, China — go ahead and look
+Two families, two languages, two worlds on the same track
+Tequeños next to dumplings on the same Thanksgiving plaque
+
+[Final Chorus]
+Two become Juan — and we can't wait to be as one
+Two become Juan — this story's only just begun
+Venezuela, China, Barcelona, Chicago, and the rest
+Every city was a chapter getting us to what comes next
+To Boston we go, and God plans the rest
+
+Two become Juan — one flesh, one promise, one new name
+Two become Juan — and nothing's ever been the same`,
   },
   {
     id: 'wedding-march',
@@ -364,6 +316,75 @@ Not east, not west,
 just you and me
 Right where we're
 always meant to be`,
+  },
+  {
+    id: 'vengo-del-futuro',
+    number: 'X',
+    title: 'Vengo del Futuro',
+    movement: 'Chinese version',
+    bonus: true,
+    audioFile: `${base}audio/track10-v1-vengo-del-futuro.mp3`,
+    photo: `${base}photos/IMG_5927.jpg`,
+    lyrics: `Vengo del futuro
+Para decirte que estamos juntos
+Y que lo nuestro ha valido cada esfuerzo
+Y que te sigues viendo espectacular
+
+La más pequeña
+Tiene ese brillo que tienen tus ojos
+Y ahora está por empezar a caminar
+Y su sonrisa se apodera de mi vida
+
+Soy el hombre más feliz
+Desde que te conocí, amor
+Y hacerme viejo junto a ti
+Será toda una bendición
+
+Y que aún seguimos de la mano
+Como dos enamorados
+Caminando hacia el café
+Donde un día te besé
+Que soy el más afortunado
+Por tenerte aquí a mi lado
+Créeme
+Que aunque pasen muchos años te amaré
+
+Vengo del futuro
+Para pedirte que no tengas miedo
+Y que confíes que lo nuestro será eterno
+Y que yo soy el que tus pasos va a cuidar
+(Oh-uh-oh-ouh-uoh)
+
+Soy el hombre más feliz
+Desde que te conocí, amor
+(De saber que estas aquí, ah)
+Y hacerme viejo junto a ti
+Será toda una bendición (Uh-oh-oh-oh-oh)
+
+Y que aún seguimos de la mano (Mano)
+Como dos enamorados (-rados)
+Caminando hacia el café
+Donde un día te besé
+Que soy el más afortunado
+Por tenerte aquí a mi lado
+Créeme
+Que aunque pasen muchos años, te amaré
+
+Uh-ah-ah
+Uh-oh-oh-oh-oh, uh-ah-ah (Uoh-oh-oh)
+Oh-oh-oh, uh-uh-uh-uh-uh-uh (Uoh-oh-oh, uoh-oh-oh)
+Uy, uy (Uoh-oh-oh)
+(Uoh-oh-oh)
+
+Y que aún seguimos de la mano
+Como dos enamorados
+Caminando hacia el café
+Donde un día te besé
+Que soy el más afortunado
+Por tenerte aquí a mi lado
+Créeme
+Que aunque pasen muchos años
+Te amaré`,
   },
 ]
 
