@@ -1,73 +1,60 @@
-# React + TypeScript + Vite
+# Allison & Juan — Wedding Remembrance
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A small keepsake site featuring nine songs from our wedding day.
 
-Currently, two official plugins are available:
+Built with Vite + React + TypeScript + Tailwind CSS v4.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Local development
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev      # http://localhost:5173/allison-juan-wedding-music/
+npm run build    # outputs to dist/
+npm run preview  # serves the production build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Deploying to GitHub Pages
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+The repo includes a GitHub Actions workflow at `.github/workflows/deploy.yml`
+that builds and deploys to Pages on every push to `main`. To wire it up:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. **Create the repo on GitHub** (one-time, browser):
+
+   <https://github.com/new>
+   - Name: `allison-juan-wedding-music`
+   - Owner: `juanbanchs`
+   - Public, no README, no .gitignore, no license
+
+2. **Push the code**:
+
+   ```bash
+   git push -u origin main
+   ```
+
+3. **Enable Pages** (one-time, browser):
+
+   Repo → **Settings** → **Pages** → **Build and deployment** → set
+   **Source** to **GitHub Actions**.
+
+4. The workflow will run automatically. Live at:
+   <https://juanbanchs.github.io/allison-juan-wedding-music/>
+
+### Manual deploy fallback
+
+If the Action ever fails, the `gh-pages` package is also wired up:
+
+```bash
+npm run deploy
 ```
+
+## Adding or swapping content
+
+- **Photos** — drop new files into `public/photos/` and reference them in
+  `src/tracks.ts`. The hero photo is `heroPhoto` at the bottom of that file.
+- **Songs** — drop new MP3s into `public/audio/` and update `src/tracks.ts`.
+- **Lyrics** — edit the `lyrics` field in `src/tracks.ts`. Tracks without a
+  `lyrics` field hide the toggle button.
+
+The originals (HEIC photos, lyrics .txt drafts, .docx) live in `music/`,
+`photos/`, and `web-photos/` — those folders are gitignored, kept locally
+as a master backup. The web-ready copies in `public/` are what ships.
