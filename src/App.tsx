@@ -71,7 +71,7 @@ export default function App() {
           With love, from Allison &amp; Juan
         </p>
         <p className="mt-2 font-sans text-xs uppercase tracking-[0.3em] text-[var(--color-ink-soft)]/70">
-          Two become one
+          Two become Juan
         </p>
       </footer>
     </main>

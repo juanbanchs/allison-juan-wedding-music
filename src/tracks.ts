@@ -12,222 +12,8 @@ const base = import.meta.env.BASE_URL
 
 export const tracks: Track[] = [
   {
-    id: 'wedding-march',
-    number: 'I',
-    title: 'Wedding March',
-    movement: 'Processional',
-    audioFile: `${base}audio/track1-v1-wedding-march.mp3`,
-    photo: `${base}photos/9b235461-8be4-4c87-bf8e-973941044d4c.jpg`,
-  },
-  {
-    id: 'allegro-i',
-    number: 'II',
-    title: 'Nuptial Concert',
-    movement: 'Allegro I',
-    audioFile: `${base}audio/track2-nuptial-concert-allegro-i.mp3`,
-    photo: `${base}photos/IMG_8797.jpg`,
-  },
-  {
-    id: 'adagio',
-    number: 'III',
-    title: 'Nuptial Concert',
-    movement: 'Adagio',
-    audioFile: `${base}audio/track3-nuptial-concert-adagio.mp3`,
-    photo: `${base}photos/DSC01165_Original.jpeg`,
-  },
-  {
-    id: 'allegro-ii',
-    number: 'IV',
-    title: 'Nuptial Concert',
-    movement: 'Allegro II',
-    audioFile: `${base}audio/track4-nuptial-concert-allegro-ii.mp3`,
-    photo: `${base}photos/DSC01338-3.jpg`,
-  },
-  {
-    id: 'song-of-songs',
-    number: 'V',
-    title: 'Song of Songs',
-    movement: '8:6–7',
-    audioFile: `${base}audio/track5-v2-song-of-songs-8-6-7.mp3`,
-    photo: `${base}photos/IMG_3417.JPG`,
-    lyrics: `Place me like a seal over your heart,
-like a seal on your arm;
-for love is as strong as death,
-its jealousy unyielding as the grave.
-
-It burns like blazing fire,
-like a mighty flame.
-Many waters cannot quench love;
-rivers cannot sweep it away.
-
-If one were to give all the wealth
-of one's house for love,
-it would be utterly scorned.`,
-  },
-  {
-    id: 'psalm-103',
-    number: 'VI',
-    title: 'Psalm 103',
-    movement: '8–12',
-    audioFile: `${base}audio/track6-v2-psalm-103-8-12.mp3`,
-    photo: `${base}photos/IMG_7038.jpg`,
-    lyrics: `The Lord is compassionate and gracious,
-slow to anger, abounding in love.
-
-He will not always accuse,
-nor will he harbor his anger forever;
-he does not treat us as our sins deserve
-or repay us according to our iniquities.
-
-The Lord is compassionate and gracious,
-slow to anger, abounding in love.
-
-For as high as the heavens are above the earth,
-so great is his love for those who fear him;
-as far as the east is from the west,
-so far has he removed our transgressions from us.
-
-The Lord is compassionate and gracious,
-slow to anger, abounding in love.`,
-  },
-  {
-    id: 'water-into-wine',
-    number: 'VII',
-    title: 'Water Into Wine',
-    audioFile: `${base}audio/track7-v2-water-into-wine.mp3`,
-    photo: `${base}photos/8cee948f25baf9baac6dcf5b43e8b2fa.jpg`,
-    lyrics: `In Cana long time ago
-Dear Lord Jesus Christ
-Your first miracle we know
-Gracious present unpriced
-
-You transformed water into wine
-What a miracle divine
-Later wine became your blood
-Gift of your merciful love
-
-No occasion had been best
-Than a wedding celebration
-As per your mother request
-To start your plan of salvation
-
-You transformed water into wine
-What a miracle divine
-Later wine became your blood
-Gift of your merciful love
-
-Transform again oh Lord,
-Our water into wine
-Our wine into your blood
-
-You transformed water into wine
-What a miracle divine
-Later wine became your blood
-Gift of your merciful love
-
-Water into wine
-A miracle divine
-Water into wine
-A miracle divine
-Water into wine`,
-  },
-  {
-    id: 'when-east-meets-west',
-    number: 'VIII',
-    title: 'When East Meets West',
-    audioFile: `${base}audio/track8-v2-when-east-meets-west.mp3`,
-    photo: `${base}photos/1213bc0394711a0883898a716df8d7e1.jpg`,
-    lyrics: `California skies,
-where it all began
-Golden light falling on
-her hand in his hand
-Between the waves
-and the redwood trees
-They built a world
-no map could see
-
-Funny how the lines we draw
-Fade when hearts collide
-Every road that led them far
-Brought them side by side
-
-When east meets west,
-the world stands still
-Not where you're from,
-but how you feel
-Two distant stars
-in the same sunset
-Writing a story
-they won't forget
-From coast to coast,
-from past to now
-They found their way,
-they don't know how
-In every step,
-in every breath
-It's love… when east meets west
-
-She carried roots
-from stories told
-In whispered dreams
-and streets of gold
-He brought a rhythm,
-warm and free
-A fusion of who
-they're meant to be
-
-Every border, every name
-Started to dissolve
-In the language of their hearts
-No need to resolve
-
-When east meets west,
-the world stands still
-Not where you're from,
-but how you feel
-Two distant stars
-in the same sunset
-Writing a story
-they won't forget
-
-Now they're dancing
-where the cold winds blow
-Boston lights
-in the winter glow
-East coast dreams with
-a west coast start
-Two worlds, one home,
-one beating heart
-
-What is east and what is west?
-Just directions at their best
-When love rewrites the lines we knew
-Every road leads me to you
-
-When east meets west,
-it all makes sense
-Through every mile,
-through every fence
-A thousand miles
-just disappear
-When you're standing
-just right here
-From where they were
-to where they'll be
-They found their truth
-across the sea
-No matter where
-their compass rests
-It's love… when east meets west
-
-Not east, not west,
-just you and me
-Right where we're
-always meant to be`,
-  },
-  {
     id: 'two-become-juan',
-    number: 'IX',
+    number: 'I',
     title: 'Two Become Juan',
     audioFile: `${base}audio/track9-v4-two-become-juan.mp3`,
     photo: `${base}photos/IMG_1969.jpg`,
@@ -364,6 +150,219 @@ Two become Huan
 One flesh, one promise, one new name
 Two become Huan
 And nothing's ever been the same`,
+  },
+  {
+    id: 'wedding-march',
+    number: 'II',
+    title: 'Wedding March',
+    movement: 'Processional',
+    audioFile: `${base}audio/track1-v1-wedding-march.mp3`,
+    photo: `${base}photos/9b235461-8be4-4c87-bf8e-973941044d4c.jpg`,
+  },
+  {
+    id: 'allegro-i',
+    number: 'III',
+    title: 'Nuptial Concert',
+    movement: 'Allegro I',
+    audioFile: `${base}audio/track2-nuptial-concert-allegro-i.mp3`,
+    photo: `${base}photos/IMG_8797.jpg`,
+  },
+  {
+    id: 'adagio',
+    number: 'IV',
+    title: 'Nuptial Concert',
+    movement: 'Adagio',
+    audioFile: `${base}audio/track3-nuptial-concert-adagio.mp3`,
+    photo: `${base}photos/DSC01165_Original.jpeg`,
+  },
+  {
+    id: 'allegro-ii',
+    number: 'V',
+    title: 'Nuptial Concert',
+    movement: 'Allegro II',
+    audioFile: `${base}audio/track4-nuptial-concert-allegro-ii.mp3`,
+    photo: `${base}photos/DSC01338-3.jpg`,
+  },
+  {
+    id: 'song-of-songs',
+    number: 'VI',
+    title: 'Song of Songs 8:6–7',
+    audioFile: `${base}audio/track5-v2-song-of-songs-8-6-7.mp3`,
+    photo: `${base}photos/IMG_3417.JPG`,
+    lyrics: `Place me like a seal over your heart,
+like a seal on your arm;
+for love is as strong as death,
+its jealousy unyielding as the grave.
+
+It burns like blazing fire,
+like a mighty flame.
+Many waters cannot quench love;
+rivers cannot sweep it away.
+
+If one were to give all the wealth
+of one's house for love,
+it would be utterly scorned.`,
+  },
+  {
+    id: 'psalm-103',
+    number: 'VII',
+    title: 'Psalm 103',
+    movement: '8–12',
+    audioFile: `${base}audio/track6-v2-psalm-103-8-12.mp3`,
+    photo: `${base}photos/IMG_7038.jpg`,
+    lyrics: `The Lord is compassionate and gracious,
+slow to anger, abounding in love.
+
+He will not always accuse,
+nor will he harbor his anger forever;
+he does not treat us as our sins deserve
+or repay us according to our iniquities.
+
+The Lord is compassionate and gracious,
+slow to anger, abounding in love.
+
+For as high as the heavens are above the earth,
+so great is his love for those who fear him;
+as far as the east is from the west,
+so far has he removed our transgressions from us.
+
+The Lord is compassionate and gracious,
+slow to anger, abounding in love.`,
+  },
+  {
+    id: 'water-into-wine',
+    number: 'VIII',
+    title: 'Water Into Wine',
+    audioFile: `${base}audio/track7-v2-water-into-wine.mp3`,
+    photo: `${base}photos/8cee948f25baf9baac6dcf5b43e8b2fa.jpg`,
+    lyrics: `In Cana long time ago
+Dear Lord Jesus Christ
+Your first miracle we know
+Gracious present unpriced
+
+You transformed water into wine
+What a miracle divine
+Later wine became your blood
+Gift of your merciful love
+
+No occasion had been best
+Than a wedding celebration
+As per your mother request
+To start your plan of salvation
+
+You transformed water into wine
+What a miracle divine
+Later wine became your blood
+Gift of your merciful love
+
+Transform again oh Lord,
+Our water into wine
+Our wine into your blood
+
+You transformed water into wine
+What a miracle divine
+Later wine became your blood
+Gift of your merciful love
+
+Water into wine
+A miracle divine
+Water into wine
+A miracle divine
+Water into wine`,
+  },
+  {
+    id: 'when-east-meets-west',
+    number: 'IX',
+    title: 'When East Meets West',
+    audioFile: `${base}audio/track8-v2-when-east-meets-west.mp3`,
+    photo: `${base}photos/1213bc0394711a0883898a716df8d7e1.jpg`,
+    lyrics: `California skies,
+where it all began
+Golden light falling on
+her hand in his hand
+Between the waves
+and the redwood trees
+They built a world
+no map could see
+
+Funny how the lines we draw
+Fade when hearts collide
+Every road that led them far
+Brought them side by side
+
+When east meets west,
+the world stands still
+Not where you're from,
+but how you feel
+Two distant stars
+in the same sunset
+Writing a story
+they won't forget
+From coast to coast,
+from past to now
+They found their way,
+they don't know how
+In every step,
+in every breath
+It's love… when east meets west
+
+She carried roots
+from stories told
+In whispered dreams
+and streets of gold
+He brought a rhythm,
+warm and free
+A fusion of who
+they're meant to be
+
+Every border, every name
+Started to dissolve
+In the language of their hearts
+No need to resolve
+
+When east meets west,
+the world stands still
+Not where you're from,
+but how you feel
+Two distant stars
+in the same sunset
+Writing a story
+they won't forget
+
+Now they're dancing
+where the cold winds blow
+Boston lights
+in the winter glow
+East coast dreams with
+a west coast start
+Two worlds, one home,
+one beating heart
+
+What is east and what is west?
+Just directions at their best
+When love rewrites the lines we knew
+Every road leads me to you
+
+When east meets west,
+it all makes sense
+Through every mile,
+through every fence
+A thousand miles
+just disappear
+When you're standing
+just right here
+From where they were
+to where they'll be
+They found their truth
+across the sea
+No matter where
+their compass rests
+It's love… when east meets west
+
+Not east, not west,
+just you and me
+Right where we're
+always meant to be`,
   },
 ]
 
