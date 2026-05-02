@@ -16,7 +16,7 @@ export const tracks: Track[] = [
     id: 'two-become-juan',
     number: 'I',
     title: 'Two Become Juan',
-    audioFile: `${base}audio/track9-v4-two-become-juan.mp3`,
+    audioFile: `${base}audio/track9-v6-two-become-juan.mp3`,
     photo: `${base}photos/IMG_1969.jpg`,
     lyrics: `Little boy from Venezuela, rolling arepas in his hands
 Papá found a job across the ocean, said "mijo, we got bigger plans"
