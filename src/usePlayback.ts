@@ -1,8 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { Track } from './tracks'
 
+export type PlayOptions = {
+  startAt?: number
+  autoplay?: boolean
+}
+
 export type PlaybackControls = {
-  playIndex: (index: number) => void
+  playIndex: (index: number, options?: PlayOptions) => void
   togglePlayPause: () => void
   toggleShuffle: () => void
   next: () => void
@@ -31,6 +36,38 @@ function buildShuffleOrder(length: number, startIdx: number): number[] {
   return [startIdx, ...others]
 }
 
+function parseTimeParam(value: string | null): number | null {
+  if (!value) return null
+  if (value.includes(':')) {
+    const [mStr, sStr] = value.split(':')
+    const minutes = parseInt(mStr, 10)
+    const seconds = parseInt(sStr, 10)
+    if (
+      Number.isFinite(minutes) &&
+      Number.isFinite(seconds) &&
+      minutes >= 0 &&
+      seconds >= 0 &&
+      seconds < 60
+    ) {
+      return minutes * 60 + seconds
+    }
+    return null
+  }
+  const n = parseFloat(value)
+  return Number.isFinite(n) && n >= 0 ? n : null
+}
+
+function updateSongInUrl(songId: string) {
+  if (typeof window === 'undefined') return
+  const params = new URLSearchParams(window.location.search)
+  if (params.get('song') === songId && !params.has('t')) return
+  params.set('song', songId)
+  params.delete('t')
+  const search = params.toString()
+  const newUrl = `${window.location.pathname}${search ? '?' + search : ''}${window.location.hash}`
+  window.history.replaceState(null, '', newUrl)
+}
+
 export function usePlayback(tracks: Track[]) {
   const audioRef = useRef<HTMLAudioElement | null>(null)
   if (!audioRef.current) {
@@ -55,7 +92,7 @@ export function usePlayback(tracks: Track[]) {
   const shuffleOrderRef = useRef<number[]>([])
   const shufflePositionRef = useRef(0)
 
-  const playIndex = useCallback((index: number) => {
+  const playIndex = useCallback((index: number, options?: PlayOptions) => {
     const audio = audioRef.current
     if (!audio) return
     const list = tracksRef.current
@@ -80,7 +117,23 @@ export function usePlayback(tracks: Track[]) {
       setCurrentTime(0)
     }
     setActiveIndex(index)
-    audio.play().catch(() => undefined)
+    updateSongInUrl(target.id)
+
+    if (options?.startAt !== undefined) {
+      const startAt = options.startAt
+      const seek = () => {
+        audio.currentTime = startAt
+      }
+      if (audio.readyState >= 1) {
+        seek()
+      } else {
+        audio.addEventListener('loadedmetadata', seek, { once: true })
+      }
+    }
+
+    if (options?.autoplay !== false) {
+      audio.play().catch(() => undefined)
+    }
   }, [])
 
   const next = useCallback(() => {
@@ -240,6 +293,24 @@ export function usePlayback(tracks: Track[]) {
       position,
     })
   }, [duration, currentTime])
+
+  const didInitRef = useRef(false)
+  useEffect(() => {
+    if (didInitRef.current) return
+    didInitRef.current = true
+    if (typeof window === 'undefined') return
+    const params = new URLSearchParams(window.location.search)
+    const songId = params.get('song')
+    if (!songId) return
+    const idx = tracksRef.current.findIndex((t) => t.id === songId)
+    if (idx < 0) return
+    const time = parseTimeParam(params.get('t'))
+    if (time !== null) {
+      playIndex(idx, { startAt: time, autoplay: false })
+    } else {
+      playIndex(idx, { autoplay: true })
+    }
+  }, [playIndex])
 
   const state: PlaybackState = { activeIndex, isPlaying, currentTime, duration, shuffle }
   const controls: PlaybackControls = {
