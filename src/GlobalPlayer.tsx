@@ -17,7 +17,7 @@ function formatTime(seconds: number) {
 
 export function GlobalPlayer({ tracks, state, controls }: GlobalPlayerProps) {
   const trackRef = useRef<HTMLDivElement | null>(null)
-  const { activeIndex, isPlaying, currentTime, duration, shuffle, playOnce } = state
+  const { activeIndex, isPlaying, currentTime, duration, shuffle } = state
 
   const activeTrack = activeIndex !== null ? tracks[activeIndex] : null
   const isIdle = activeIndex === null
@@ -84,22 +84,6 @@ export function GlobalPlayer({ tracks, state, controls }: GlobalPlayerProps) {
           </div>
 
           <div className="flex shrink-0 items-center justify-end gap-1 sm:gap-2">
-            <button
-              type="button"
-              onClick={controls.togglePlayOnce}
-              aria-label={playOnce ? 'Disable play once' : 'Enable play once'}
-              aria-pressed={playOnce}
-              className={`grid h-9 w-9 place-items-center rounded-full transition-colors ${
-                playOnce
-                  ? 'bg-[var(--color-rose)]/15 text-[var(--color-rose)]'
-                  : 'text-[var(--color-ink-soft)] hover:text-[var(--color-ink)]'
-              }`}
-            >
-              <span className="font-sans text-[12px] font-semibold leading-none tracking-tight">
-                1×
-              </span>
-            </button>
-
             <button
               type="button"
               onClick={controls.toggleShuffle}
