@@ -81,7 +81,7 @@ export function usePlayback(tracks: Track[]) {
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
   const [shuffle, setShuffle] = useState(false)
-  const [playOnce, setPlayOnce] = useState(true)
+  const [playOnce, setPlayOnce] = useState(false)
 
   const tracksRef = useRef(tracks)
   tracksRef.current = tracks
@@ -316,6 +316,10 @@ export function usePlayback(tracks: Track[]) {
     didInitRef.current = true
     if (typeof window === 'undefined') return
     const params = new URLSearchParams(window.location.search)
+    const onceVal = params.get('once')
+    if (onceVal !== null && onceVal !== '0' && onceVal !== 'false') {
+      setPlayOnce(true)
+    }
     const songId = params.get('song')
     if (!songId) return
     const idx = tracksRef.current.findIndex((t) => t.id === songId)
