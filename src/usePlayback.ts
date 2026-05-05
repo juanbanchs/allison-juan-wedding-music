@@ -10,6 +10,7 @@ export type PlaybackControls = {
   playIndex: (index: number, options?: PlayOptions) => void
   togglePlayPause: () => void
   toggleShuffle: () => void
+  togglePlayOnce: () => void
   next: () => void
   prev: () => void
   skipBy: (seconds: number) => void
@@ -22,6 +23,7 @@ export type PlaybackState = {
   currentTime: number
   duration: number
   shuffle: boolean
+  playOnce: boolean
 }
 
 function buildShuffleOrder(length: number, startIdx: number): number[] {
@@ -79,6 +81,7 @@ export function usePlayback(tracks: Track[]) {
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
   const [shuffle, setShuffle] = useState(false)
+  const [playOnce, setPlayOnce] = useState(true)
 
   const tracksRef = useRef(tracks)
   tracksRef.current = tracks
@@ -88,6 +91,9 @@ export function usePlayback(tracks: Track[]) {
 
   const shuffleRef = useRef(shuffle)
   shuffleRef.current = shuffle
+
+  const playOnceRef = useRef(playOnce)
+  playOnceRef.current = playOnce
 
   const shuffleOrderRef = useRef<number[]>([])
   const shufflePositionRef = useRef(0)
@@ -217,6 +223,10 @@ export function usePlayback(tracks: Track[]) {
     })
   }, [])
 
+  const togglePlayOnce = useCallback(() => {
+    setPlayOnce((p) => !p)
+  }, [])
+
   useEffect(() => {
     const audio = audioRef.current
     if (!audio) return
@@ -225,7 +235,13 @@ export function usePlayback(tracks: Track[]) {
     const onPause = () => setIsPlaying(false)
     const onTime = () => setCurrentTime(audio.currentTime)
     const onMeta = () => setDuration(audio.duration)
-    const onEnded = () => next()
+    const onEnded = () => {
+      if (playOnceRef.current) {
+        audio.currentTime = 0
+        return
+      }
+      next()
+    }
 
     audio.addEventListener('play', onPlay)
     audio.addEventListener('pause', onPause)
@@ -312,11 +328,12 @@ export function usePlayback(tracks: Track[]) {
     }
   }, [playIndex])
 
-  const state: PlaybackState = { activeIndex, isPlaying, currentTime, duration, shuffle }
+  const state: PlaybackState = { activeIndex, isPlaying, currentTime, duration, shuffle, playOnce }
   const controls: PlaybackControls = {
     playIndex,
     togglePlayPause,
     toggleShuffle,
+    togglePlayOnce,
     next,
     prev,
     skipBy,

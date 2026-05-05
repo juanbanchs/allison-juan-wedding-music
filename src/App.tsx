@@ -64,11 +64,13 @@ export default function App() {
               currentTime: player.currentTime,
               duration: player.duration,
               shuffle: player.shuffle,
+              playOnce: player.playOnce,
             }}
             controls={{
               playIndex: player.playIndex,
               togglePlayPause: player.togglePlayPause,
               toggleShuffle: player.toggleShuffle,
+              togglePlayOnce: player.togglePlayOnce,
               next: player.next,
               prev: player.prev,
               skipBy: player.skipBy,
