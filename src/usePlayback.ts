@@ -72,9 +72,6 @@ function updateSongInUrl(songId: string) {
 
 export function usePlayback(tracks: Track[]) {
   const audioRef = useRef<HTMLAudioElement | null>(null)
-  if (!audioRef.current) {
-    audioRef.current = typeof Audio !== 'undefined' ? new Audio() : null
-  }
 
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
   const [isPlaying, setIsPlaying] = useState(false)
@@ -344,5 +341,5 @@ export function usePlayback(tracks: Track[]) {
     seekTo,
   }
 
-  return { ...state, ...controls }
+  return { ...state, ...controls, audioRef }
 }

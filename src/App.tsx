@@ -8,6 +8,7 @@ export default function App() {
 
   return (
     <main className="relative">
+      <audio ref={player.audioRef} preload="auto" />
       <section className="relative overflow-hidden">
         <div className="relative mx-auto max-w-6xl px-6 pt-10 sm:pt-16 lg:pt-20">
           <div className="relative overflow-hidden rounded-[36px] shadow-[0_40px_80px_-30px_rgba(42,36,31,0.45)]">
