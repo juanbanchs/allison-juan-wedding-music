@@ -272,6 +272,13 @@ Two distant stars
 in the same sunset
 Writing a story
 they won't forget
+From coast to coast,
+from past to now
+They found their way,
+they don't know how
+In every step,
+in every breath
+It's love… when east meets west
 
 Now they're dancing
 where the cold winds blow
