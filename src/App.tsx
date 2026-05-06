@@ -49,9 +49,8 @@ export default function App() {
             Nine songs, one love story
           </h2>
           <p className="mx-auto mt-5 max-w-xl font-sans text-sm leading-relaxed text-[var(--color-ink-soft)] sm:text-base">
-            Juan's father, Rafael Banchs, created these tracks with the help of
-            AI as a gift to us for our wedding. We hope you enjoy them as much
-            as we did!
+            Juan's father, Rafael Banchs, created these tracks as a gift to us
+            for our wedding. We hope you enjoy them as much as we did!
           </p>
         </header>
 
